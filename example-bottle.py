@@ -1,4 +1,6 @@
+from bottle import get, run
 from basicevents import subscribe, send
+import time
 import signal
 import sys
 
@@ -22,11 +24,18 @@ def print_message2(*args, **kwargs):
     time.sleep(4)
     print "Example function2", args, kwargs
 
-print_message()
-print_message2()
-send("Hello1", text_example="normal run")
-send("Hello1", text_example="instant", instant=True)
-send("Hello2", text_example="normal run")
-send("Hello2", text_example="instant", instant=True)
-print "Finish send all events"
-send("STOP")
+
+@get('/test1')
+def test1():
+    t1 = time.time()
+    send("Hello1", text_example="instant")
+    return "send signal ok, time ", str(time.time() - t1)
+
+
+@get('/test2')
+def test2():
+    t1 = time.time()
+    send("Hello2", text_example="instant", instant=True)
+    return "send signal ok, time ", str(time.time() - t1)
+
+run(host='localhost', port=8080)
