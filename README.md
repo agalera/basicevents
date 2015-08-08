@@ -17,4 +17,5 @@ def bla_bla():
     send("pepito", 1, 2, 3, pepe="pepe mola in other thread", instant=True)
 
 bla_bla()
+send("STOP") # kills thread responsible for managing events
 ```
