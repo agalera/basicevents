@@ -23,7 +23,8 @@ class events(object):
                 continue
             events._run_event(event)
 
-    Thread(target=send_queue, args=(queue, )).start()
+    t = Thread(target=send_queue, args=(queue, ))
+    t.start()
 
     @classmethod
     def subscribe(cls, event, func):
@@ -42,9 +43,9 @@ class events(object):
 
 
 def subscribe(event):
-    def wrap_function(*args, **kwargs):
-        events.subscribe(event, args[0])
-        return args[0]
+    def wrap_function(func):
+        events.subscribe(event, func)
+        return func
     return wrap_function
 
 
