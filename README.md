@@ -2,7 +2,7 @@
 python basic events non-blocking
 
 ```python
-check example.py
+# recommeded check "example.py"
 from basicevents import subscribe, send
 
 @subscribe("pepito")
