@@ -1,4 +1,5 @@
 from threading import Thread
+import traceback
 
 
 class events(object):
@@ -11,7 +12,10 @@ class events(object):
         if event[0] not in events.subs:
             return
         for func in events.subs[event[0]]:
-            func(*event[1], **event[2])
+            try:
+                func(*event[1], **event[2])
+            except:
+                print traceback.format_exc()
 
     def send_queue(queue):
         proccess_queue = True
