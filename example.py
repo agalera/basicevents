@@ -22,11 +22,14 @@ def print_message2(*args, **kwargs):
     time.sleep(4)
     print "Example function2", args, kwargs
 
-print_message()
-print_message2()
+
+@subscribe("STOP")
+def dead_mainthread(*args, **kwargs):
+    print "dead MainThread!"
+
 send("Hello1", text_example="normal run")
 send("Hello1", text_example="instant", instant=True)
 send("Hello2", text_example="normal run")
 send("Hello2", text_example="instant", instant=True)
 print "Finish send all events"
-send("STOP")
+print "waiting stop"

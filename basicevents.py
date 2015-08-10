@@ -1,4 +1,4 @@
-from threading import Thread
+import threading
 import traceback
 
 
@@ -6,6 +6,10 @@ class events(object):
     import Queue
     subs = {}
     queue = Queue.Queue()
+    for i in threading.enumerate():
+        if i.name == "MainThread":
+            MainThread = i
+            break
 
     @classmethod
     def _run_event(cls, event):
@@ -20,15 +24,22 @@ class events(object):
     def send_queue(queue):
         proccess_queue = True
         while proccess_queue:
-            event = queue.get()
+            try:
+                event = queue.get(timeout=30)
+            except:
+                # check main thread is alive
+                if not events.MainThread.is_alive():
+                    print("MainThread dead")
+                    send("STOP")
+                continue
+
+            events._run_event(event)
             if event[0] == "STOP":
-                print "STOP Thread"
+                print("STOP Thread")
                 proccess_queue = False
                 continue
-            events._run_event(event)
 
-    t = Thread(target=send_queue, args=(queue, ))
-    t.start()
+    t = threading.Thread(target=send_queue, args=(queue, )).start()
 
     @classmethod
     def subscribe(cls, event, func):
@@ -40,8 +51,8 @@ class events(object):
     def send(cls, type_event, *args, **kwargs):
         event = (type_event, args, kwargs)
         if "instant" in kwargs and kwargs['instant']:
-            Thread(target=cls._run_event,
-                   kwargs={'event': event}).start()
+            threading.Thread(target=cls._run_event,
+                             kwargs={'event': event}).start()
         else:
             cls.queue.put(event)
 
