@@ -2,7 +2,7 @@
 python basic events non-blocking
 
 ```python
-# recommeded check "example.py"
+# recommeded check all examples
 from basicevents import subscribe, send
 
 @subscribe("pepito")
@@ -17,5 +17,4 @@ def bla_bla():
     send("pepito", 1, 2, 3, pepe="pepe mola in other thread", instant=True)
 
 bla_bla()
-send("STOP") # kills thread responsible for managing events
 ```
