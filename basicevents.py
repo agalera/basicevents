@@ -6,7 +6,7 @@ class events(object):
     import Queue
     subs = {}
     queue = Queue.Queue()
-    timeout = 1
+    timeout = 30
 
     for i in threading.enumerate():
         if i.name == "MainThread":
