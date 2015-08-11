@@ -4,6 +4,7 @@ python basic events non-blocking
 ## Install
 pip install basicevents
 
+## Example
 
 ```python
 # recommeded check all examples
