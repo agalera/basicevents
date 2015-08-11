@@ -1,5 +1,5 @@
 # BasicEvents
-python basic events non-blocking
+python basic events send non-blocking
 
 ## Install
 pip install basicevents
