@@ -4,6 +4,13 @@
 import os
 import sys
 
+try:
+    from pypandoc import convert
+    read_md = lambda f: convert(f, 'rst')
+except ImportError:
+    print("warning: pypandoc module not found, could not convert Markdown to RST")
+    read_md = lambda f: open(f, 'r').read()
+
 
 try:
     from setuptools import setup
@@ -15,13 +22,15 @@ if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
     sys.exit()
 
-readme = open('README.md').read()
+readme = read_md('README.md')
+changelog = read_md('CHANGELOG.md')
+
 
 setup(
     name='basicevents',
-    version='0.1.2',
+    version='0.1.3',
     description='python events non-blocking',
-    long_description=readme,
+    long_description=readme+'\n\n'+changelog,
     author='Alberto Galera Jimenez',
     author_email='galerajimenez@gmail.com',
     url='https://github.com/kianxineki/basicevents',
