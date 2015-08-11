@@ -17,7 +17,7 @@ if sys.argv[-1] == 'publish':
 
 setup(
     name='basicevents',
-    version='0.1.0',
+    version='0.1.1',
     description='python events non-blocking',
     long_description='python basic and easy events non-blocking',
     author='Alberto Galera Jimenez',
@@ -40,6 +40,10 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4'
     ],
     entry_points={}
 )
