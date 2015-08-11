@@ -2,7 +2,13 @@
 python basic events send non-blocking
 
 ## Install
+
+```bash
 pip install basicevents
+```
+
+Link pypi: https://pypi.python.org/pypi/basicevents
+
 
 ## Example
 
