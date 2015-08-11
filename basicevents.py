@@ -6,7 +6,7 @@ class events(object):
     import Queue
     subs = {}
     queue = Queue.Queue()
-    timeout = 1
+    timeout = 30
 
     for i in threading.enumerate():
         if i.name == "MainThread":
@@ -38,28 +38,6 @@ class events(object):
         else:
             cls.queue.put(event)
 
-    def __run_queue():
-        proccess_queue = True
-        while proccess_queue:
-            try:
-                event = events.queue.get(timeout=events.timeout)
-            except NameError:
-                # wait for class events finished instantiated
-                continue
-            except:
-                # check main thread is alive
-                if not events.MainThread.is_alive():
-                    print("MainThread dead")
-                    send("STOP")
-                continue
-
-            events._run_event(event)
-            if event[0] == "STOP":
-                print("STOP Thread")
-                proccess_queue = False
-
-    threading.Thread(target=__run_queue).start()
-
 
 def subscribe(event):
     def wrap_function(func):
@@ -70,3 +48,23 @@ def subscribe(event):
 
 def send(*args, **kwargs):
     return events.send(*args, **kwargs)
+
+
+def __run_queue():
+    proccess_queue = True
+    while proccess_queue:
+        try:
+            event = events.queue.get(timeout=events.timeout)
+        except:
+            # check main thread is alive
+            if not events.MainThread.is_alive():
+                print("MainThread dead")
+                send("STOP")
+            continue
+
+        events._run_event(event)
+        if event[0] == "STOP":
+            print("STOP Thread")
+            proccess_queue = False
+
+threading.Thread(target=__run_queue).start()
