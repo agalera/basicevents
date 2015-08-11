@@ -17,9 +17,21 @@ def example(*args, **kwargs):
 def bla_bla():
     # much code
     # add to queue signals (non-blocking)
-    send("pepito", 1, 2, 3, pepe="pepe mola")
+    send("pepito", 1, 2, 3, example="added queue")
     # create new thread for this request (non-blocking) not removing key instant
-    send("pepito", 1, 2, 3, pepe="pepe mola in other thread", instant=True)
+    send("pepito", 1, 2, 3, example="new thread", instant=True)
 
 bla_bla()
 ```
+
+## Documentation functions
+Only two functions!
+
+@subscribe(<name event>)
+With this decorator you can subscribe to all events that are sent to <name event>
+
+send(<name event>, *args, **kwargs)
+If caught in a parameter called instant in kwargs with True call is placed in a new thread
+
+* Note: Currently running as thread to allow sharing of memory, if you want an event to use more CPU (cores), you can run processes within the event.
+
