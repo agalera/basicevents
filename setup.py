@@ -19,7 +19,7 @@ setup(
     name='basicevents',
     version='0.1.1',
     description='python events non-blocking',
-    long_description='python basic and easy events non-blocking',
+    long_description='python basic and easy events send non-blocking',
     author='Alberto Galera Jimenez',
     author_email='galerajimenez@gmail.com',
     url='https://github.com/kianxineki/basicevents',
