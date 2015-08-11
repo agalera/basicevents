@@ -32,7 +32,6 @@ setup(
     keywords='basicevents',
     classifiers=[
         'Development Status :: 4 - Beta',
-        'Environment :: Console',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU General Public License (GPL)',
