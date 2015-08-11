@@ -28,6 +28,7 @@ class events(object):
     def send(cls, type_event, *args, **kwargs):
         event = (type_event, args, kwargs)
         if "instant" in kwargs and kwargs['instant']:
+            del kwargs['instant']
             threading.Thread(target=cls._run_event,
                              kwargs={'event': event}).start()
         else:
