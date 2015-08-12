@@ -28,7 +28,8 @@ send("pepito", 1, 2, 3, example="new thread", instant=True)
 
 ```
 
-## Documentation functions
+## Documentation
+### Functions
 Only two functions!
 
 @subscribe(name_event)
@@ -39,3 +40,24 @@ If caught in a parameter called instant in kwargs with True call is placed in a 
 
 * Note: Currently running as thread to allow sharing of memory, if you want an event to use more CPU (cores), you can run processes within the event.
 
+### Attributes events
+- events.subs
+return:
+```python
+{'juanito': [<function __main__.example2>],
+ 'pepito': [<function __main__.example>]}
+```
+
+- events.queue
+return queue
+queue is processed automatically and do not need to access this attribute, but if you want you can use https://docs.python.org/2/library/queue.html
+
+- events.timeout
+return int
+It is the timeout of the get request queue.
+When it reaches the timeout check the MainThread is alive, if so wait to get back, if not, it sends a signal to the EventThread.
+You can modify it if you wish.
+```python
+from basicevents import events
+events.timeout = 1
+```
