@@ -52,11 +52,13 @@ return:
 - events.queue
 
 return queue
+
 queue is processed automatically and do not need to access this attribute, but if you want you can use https://docs.python.org/2/library/queue.html
 
 - events.timeout
 
 return int
+
 It is the timeout of the get request queue.
 When it reaches the timeout check the MainThread is alive, if so wait to get back, if not, it sends a signal to the EventThread.
 You can modify it if you wish.
