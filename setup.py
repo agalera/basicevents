@@ -8,7 +8,7 @@ try:
     from pypandoc import convert
     read_md = lambda f: convert(f, 'rst')
 except ImportError:
-    print("warning: pypandoc module not found, could not convert Markdown to RST")
+    print("warning: pypandoc module not found")
     read_md = lambda f: open(f, 'r').read()
 
 
@@ -28,7 +28,7 @@ changelog = read_md('CHANGELOG.md')
 
 setup(
     name='basicevents',
-    version='0.1.4',
+    version='1.0.0',
     description='python events non-blocking',
     long_description=readme+'\n\n'+changelog,
     author='Alberto Galera Jimenez',

@@ -23,9 +23,14 @@ def example(*args, **kwargs):
 # add to queue signals (non-blocking)
 send("pepito", 1, 2, 3, example="added queue")
 
-# create new thread for this request (non-blocking)
-send("pepito", 1, 2, 3, example="new thread", instant=True)
+# add to queue signals (non-blocking)
+send("pepito", 1, 2, 3, example="added queue", runtype='queue')
 
+# create new thread for this request (non-blocking)
+send("pepito", 1, 2, 3, example="new thread", runtype='thread')
+
+# This is blocking
+send("pepito", 1, 2, 3, example="blocking", runtype='blocking')
 ```
 
 ## Documentation

@@ -1,4 +1,11 @@
 # CHANGELOG
+## 1.0.0 (2015-08-13)
+- Now you can run blocker way events
+- break compatibility function send (check documentation)
+
+## 0.1.5 (2015-08-12)
+- update documentation
+
 ## 0.1.4 (2015-08-12)
 - update documentation
 - remove instant key in kwargs

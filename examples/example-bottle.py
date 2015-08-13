@@ -18,14 +18,28 @@ def print_message2(*args, **kwargs):
 @get('/test1')
 def test1():
     t1 = time.time()
-    send("Hello1", text_example="instant")
+    send("Hello1", text_example="run normal")
     return "send signal ok, time ", str(time.time() - t1)
 
 
 @get('/test2')
 def test2():
     t1 = time.time()
-    send("Hello2", text_example="instant", instant=True)
+    send("Hello1", text_example="run normal", runtype='queue')
+    return "send signal ok, time ", str(time.time() - t1)
+
+
+@get('/test3')
+def test3():
+    t1 = time.time()
+    send("Hello1", text_example="blocking", runtype='blocking')
+    return "send signal ok, time ", str(time.time() - t1)
+
+
+@get('/test4')
+def test4():
+    t1 = time.time()
+    send("Hello2", text_example="instant", runtype='thread')
     return "send signal ok, time ", str(time.time() - t1)
 
 run(host='localhost', port=8080)

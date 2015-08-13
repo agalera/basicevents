@@ -27,12 +27,15 @@ class events(object):
     @classmethod
     def send(cls, type_event, *args, **kwargs):
         event = (type_event, args, kwargs)
-        if "instant" in kwargs and kwargs['instant']:
-            del kwargs['instant']
+        if 'runtype' not in kwargs or kwargs['runtype'] == 'queue':
+            cls.queue.put(event)
+        elif kwargs['runtype'] == 'thread':
+            del kwargs['runtype']
             threading.Thread(target=cls._run_event,
                              kwargs={'event': event}).start()
-        else:
-            cls.queue.put(event)
+        elif kwargs['runtype'] == 'blocking':
+            del kwargs['runtype']
+            cls._run_event(event)
 
 
 def subscribe(event):
