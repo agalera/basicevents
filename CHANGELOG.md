@@ -1,4 +1,7 @@
 # CHANGELOG
+## 1.0.1 (2015-08-13)
+- fix pip install basicevents
+
 ## 1.0.0 (2015-08-13)
 - Now you can run blocker way events
 - break compatibility function send (check documentation)
