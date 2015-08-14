@@ -1,5 +1,5 @@
-from basicevents.events import (subscribe, send_thread, send_queue,
-                                send_blocking, add_subcribe, send)
+from basicevents import (subscribe, send_thread, send_queue,
+                         send_blocking, add_subscribe, send)
 
 
 @subscribe("Hello1")
@@ -28,7 +28,7 @@ send_thread("Hello1", text_example="new thread")
 send_queue("Hello2", text_example="normal run")
 send("Hello2", text_example="normal run")
 
-add_subcribe("Hello3", text_example="Manual subscribe")
+add_subscribe("Hello3", other_example)
 send_blocking("Hello3", text_example="blocking")
 
 print "Finish send all events"
