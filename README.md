@@ -46,19 +46,19 @@ send_blocking("pepito", 1, 2, 3, example="blocking")
 @subscribe(name_event)
 With this decorator you can subscribe to all events that are sent to name_event.
 
-# manual subscribe
+manual subscribe
 add_subscribe(name_event, function)
 
-# DEPRECATED (non-blocking)
+DEPRECATED (non-blocking)
 send(name_event, *args, **kwargs)
 
-# added in queue (non-blocking)
+added in queue (non-blocking)
 send_queue(name_event, *args, **kwargs)
 
-# run in new thread (non-blocking)
+run in new thread (non-blocking)
 send_thread(name_event, *args, **kwargs)
 
-# run blocking (blocking)
+run blocking (blocking)
 send_blocking(name_event, *args, **kwargs)
 
 * Note: Currently running as thread to allow sharing of memory, if you want an event to use more CPU (cores), you can run processes within the event.
