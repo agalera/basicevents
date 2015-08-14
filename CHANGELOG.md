@@ -1,4 +1,8 @@
 # CHANGELOG
+## 1.0.2 (2015-08-14)
+- increase performance function send (19%+)
+- increase performance subscribe (2%+)
+
 ## 1.0.1 (2015-08-13)
 - fix pip install basicevents
 

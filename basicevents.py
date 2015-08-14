@@ -8,45 +8,40 @@ class events(object):
     queue = Queue.Queue()
     timeout = 30
 
-    @classmethod
-    def _run_event(cls, event):
-        if event[0] not in events.subs:
-            return
-        for func in events.subs[event[0]]:
+
+def _run_event(event, *args, **kwargs):
+    try:
+        for func in events.subs[event]:
             try:
-                func(*event[1], **event[2])
+                func(*args, **kwargs)
             except:
                 print(traceback.format_exc())
-
-    @classmethod
-    def subscribe(cls, event, func):
-        if event not in cls.subs:
-            cls.subs[event] = []
-        cls.subs[event].append(func)
-
-    @classmethod
-    def send(cls, type_event, *args, **kwargs):
-        event = (type_event, args, kwargs)
-        if 'runtype' not in kwargs or kwargs['runtype'] == 'queue':
-            cls.queue.put(event)
-        elif kwargs['runtype'] == 'thread':
-            del kwargs['runtype']
-            threading.Thread(target=cls._run_event,
-                             kwargs={'event': event}).start()
-        elif kwargs['runtype'] == 'blocking':
-            del kwargs['runtype']
-            cls._run_event(event)
+    except:
+        pass
 
 
 def subscribe(event):
     def wrap_function(func):
-        events.subscribe(event, func)
+        if event not in events.subs:
+            events.subs[event] = []
+        events.subs[event].append(func)
         return func
     return wrap_function
 
 
 def send(*args, **kwargs):
-    return events.send(*args, **kwargs)
+    """
+    runtype: queue, thread or blocking
+    """
+    if 'runtype' not in kwargs or kwargs['runtype'] == 'queue':
+        events.queue.put((args, kwargs))
+    elif kwargs['runtype'] == 'thread':
+        del kwargs['runtype']
+        threading.Thread(target=_run_event,
+                         args=args, kwargs=kwargs).start()
+    elif kwargs['runtype'] == 'blocking':
+        del kwargs['runtype']
+        _run_event(*args, **kwargs)
 
 
 def __run_queue():
@@ -57,15 +52,15 @@ def __run_queue():
             break
     while proccess_queue:
         try:
-            event = events.queue.get(timeout=events.timeout)
+            args, kwargs = events.queue.get(timeout=events.timeout)
         except:
             # check main thread is alive
             if not MainThread.is_alive():
                 send("STOP")
             continue
 
-        events._run_event(event)
-        if event[0] == "STOP":
+        _run_event(*args, **kwargs)
+        if args[0] == "STOP":
             proccess_queue = False
 
 threading.Thread(target=__run_queue).start()

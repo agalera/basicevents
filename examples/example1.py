@@ -1,14 +1,4 @@
 from basicevents import subscribe, send
-import signal
-import sys
-
-
-def signal_handler(signal, frame):
-        print('You pressed Ctrl+C!')
-        send("STOP")
-        sys.exit(0)
-
-signal.signal(signal.SIGINT, signal_handler)
 
 
 @subscribe("Hello1")
