@@ -28,7 +28,7 @@ changelog = read_md('CHANGELOG.md')
 
 setup(
     name='basicevents',
-    version='1.0.2',
+    version='1.1.0',
     description='python events non-blocking',
     long_description=readme+'\n\n'+changelog,
     author='Alberto Galera Jimenez',

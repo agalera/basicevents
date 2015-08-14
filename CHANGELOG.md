@@ -1,4 +1,8 @@
 # CHANGELOG
+## 1.1.0 (2015-08-14)
+- Refactor code
+- Added new functions: send_queue, send_thread, send_blocking, add_subscribe
+
 ## 1.0.2 (2015-08-14)
 - increase performance function send (19%+)
 - increase performance subscribe (2%+)

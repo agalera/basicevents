@@ -14,38 +14,57 @@ Link pypi: https://pypi.python.org/pypi/basicevents
 
 ```python
 # recommeded check all examples
-from basicevents import subscribe, send
+from basicevents.events import (subscribe, send_thread, send_queue,
+                                send_blocking, add_subcribe, send)
 
 @subscribe("pepito")
 def example(*args, **kwargs):
     print "recv signal, values:", args, kwargs
 
+def example2(*args, **kwargs):
+    print "manual subscribe"
+
+# manual subscribe
+add_subscribe("pepito", example2)
+
 # add to queue signals (non-blocking)
 send("pepito", 1, 2, 3, example="added queue")
 
 # add to queue signals (non-blocking)
-send("pepito", 1, 2, 3, example="added queue", runtype='queue')
+send_queue("pepito", 1, 2, 3, example="added queue")
 
 # create new thread for this request (non-blocking)
-send("pepito", 1, 2, 3, example="new thread", runtype='thread')
+send_thread("pepito", 1, 2, 3, example="new thread")
 
 # This is blocking
-send("pepito", 1, 2, 3, example="blocking", runtype='blocking')
+send_blocking("pepito", 1, 2, 3, example="blocking")
 ```
 
 ## Documentation
 ### Functions
-Only two functions!
 
 @subscribe(name_event)
 With this decorator you can subscribe to all events that are sent to name_event.
 
+# manual subscribe
+add_subscribe(name_event, function)
+
+# DEPRECATED (non-blocking)
 send(name_event, *args, **kwargs)
-If caught in a parameter called instant in kwargs with True call is placed in a new thread.
+
+# added in queue (non-blocking)
+send_queue(name_event, *args, **kwargs)
+
+# run in new thread (non-blocking)
+send_thread(name_event, *args, **kwargs)
+
+# run blocking (blocking)
+send_blocking(name_event, *args, **kwargs)
 
 * Note: Currently running as thread to allow sharing of memory, if you want an event to use more CPU (cores), you can run processes within the event.
 
 ### Attributes events
+
 - events.subs
 
 return:
@@ -70,4 +89,10 @@ You can modify it if you wish.
 ```python
 from basicevents import events
 events.timeout = 1
+```
+
+- these parameters are too, have documented above:
+
+```python
+add_subscribe, send, send_queue, send_thread, send_blocking
 ```

@@ -1,5 +1,6 @@
 from bottle import get, run
-from basicevents import subscribe, send
+from basicevents import (subscribe, send, send_thread,
+                         send_blocking, send_queue)
 import time
 
 
@@ -25,21 +26,21 @@ def test1():
 @get('/test2')
 def test2():
     t1 = time.time()
-    send("Hello1", text_example="run normal", runtype='queue')
+    send_queue("Hello1", text_example="run normal", runtype='queue')
     return "send signal ok, time ", str(time.time() - t1)
 
 
 @get('/test3')
 def test3():
     t1 = time.time()
-    send("Hello1", text_example="blocking", runtype='blocking')
+    send_blocking("Hello1", text_example="blocking", runtype='blocking')
     return "send signal ok, time ", str(time.time() - t1)
 
 
 @get('/test4')
 def test4():
     t1 = time.time()
-    send("Hello2", text_example="instant", runtype='thread')
+    send_thread("Hello2", text_example="instant", runtype='thread')
     return "send signal ok, time ", str(time.time() - t1)
 
 run(host='localhost', port=8080)

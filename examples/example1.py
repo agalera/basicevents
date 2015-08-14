@@ -1,4 +1,5 @@
-from basicevents import subscribe, send
+from basicevents.events import (subscribe, send_thread, send_queue,
+                                send_blocking, add_subcribe, send)
 
 
 @subscribe("Hello1")
@@ -17,9 +18,18 @@ def print_message2(*args, **kwargs):
 def dead_mainthread(*args, **kwargs):
     print "dead MainThread!"
 
-send("Hello1", text_example="normal run")
-send("Hello2", text_example="new thread", runtype='thread')
-send("Hello3", text_example="normal run", runtype="queue")
-send("Hello4", text_example="blocking", runtype='blocking')
+
+def other_example(*args, **kwargs):
+    print "manual subscribe"
+
+
+send_thread("Hello1", text_example="new thread")
+
+send_queue("Hello2", text_example="normal run")
+send("Hello2", text_example="normal run")
+
+add_subcribe("Hello3", text_example="Manual subscribe")
+send_blocking("Hello3", text_example="blocking")
+
 print "Finish send all events"
 print "waiting stop"
