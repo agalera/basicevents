@@ -1,6 +1,6 @@
 # CHANGELOG
-## 1.1.2 (2015-08-14)
-- Try(2) fix changelog in pypi
+## 1.1.3 (2015-08-14)
+- Fix bug in add_subcribe
 
 ## 1.1.1 (2015-08-14)
 - Try fix changelog in pypi
