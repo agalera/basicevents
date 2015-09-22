@@ -1,4 +1,11 @@
 # CHANGELOG
+## 1.2.0 (2015-09-22)
+- You can change the method that executes when an exception occurs
+- Remove deprecated functions
+- Send internally calls send_queue
+- Official support python 3.5.0
+- Permit change default send
+
 ## 1.1.3 (2015-08-14)
 - Fix bug in add_subcribe
 

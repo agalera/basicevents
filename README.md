@@ -49,11 +49,6 @@ With this decorator you can subscribe to all events that are sent to name_event.
 manual subscribe
 add_subscribe(name_event, function)
 
-- DEPRECATED (non-blocking)
-
-send(name_event, *args, **kwargs)
-
-
 - added in queue (non-blocking)
 
 send_queue(name_event, *args, **kwargs)
@@ -98,6 +93,29 @@ You can modify it if you wish.
 ```python
 from basicevents import events
 events.timeout = 1
+```
+
+- events.logger
+
+return function
+
+You can change the function that is executed when an exception occurs. Uses default print
+You can modify it if you wish.
+```python
+from basicevents import events
+events.logger = function
+```
+
+
+- events.send
+
+return function
+
+You can change the function send (It is a link). default is events.send_queue
+
+```python
+from basicevents import events
+events.send = events.send_blocking # or other functions
 ```
 
 - these parameters are too, have documented above:

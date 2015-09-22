@@ -1,3 +1,4 @@
+from __future__ import print_function
 import threading
 import traceback
 import Queue
@@ -7,6 +8,7 @@ class events(object):
     subs = {}
     queue = Queue.Queue()
     timeout = 30
+    logger = print
 
     @staticmethod
     def _run_event(event, *args, **kwargs):
@@ -15,7 +17,7 @@ class events(object):
                 try:
                     func(*args, **kwargs)
                 except:
-                    print(traceback.format_exc())
+                    events.logger(traceback.format_exc())
         except:
             pass
 
@@ -33,22 +35,6 @@ class events(object):
         return wrap_function
 
     @staticmethod
-    def send(*args, **kwargs):
-        """
-        DEPRECATED
-        runtype: queue, thread or blocking
-        """
-        if 'runtype' not in kwargs or kwargs['runtype'] == 'queue':
-            events.queue.put((args, kwargs))
-        elif kwargs['runtype'] == 'thread':
-            del kwargs['runtype']
-            threading.Thread(target=events._run_event,
-                             args=args, kwargs=kwargs).start()
-        elif kwargs['runtype'] == 'blocking':
-            del kwargs['runtype']
-            events._run_event(*args, **kwargs)
-
-    @staticmethod
     def send_queue(*args, **kwargs):
         events.queue.put((args, kwargs))
 
@@ -60,6 +46,9 @@ class events(object):
     @staticmethod
     def send_blocking(*args, **kwargs):
         events._run_event(*args, **kwargs)
+
+    # default send
+    send = send_queue
 
 
 def __run_queue():

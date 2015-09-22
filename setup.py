@@ -28,7 +28,7 @@ changelog = read_md('CHANGELOG.md')
 
 setup(
     name='basicevents',
-    version='1.1.3',
+    version='1.2.0',
     description='python events non-blocking',
     long_description=readme+'\n\n'+changelog,
     author='Alberto Galera Jimenez',
@@ -53,7 +53,8 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4'
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5'
     ],
     entry_points={}
 )
