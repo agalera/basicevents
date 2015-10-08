@@ -1,3 +1,7 @@
+
+[![PypiDownloads](https://img.shields.io/pypi/dm/basicevents.svg)](https://pypi.python.org/pypi/basicevents)
+[![pythonversions](https://img.shields.io/pypi/pyversions/basicevents.svg)](https://pypi.python.org/pypi/basicevents)
+
 # BasicEvents
 python basic events send non-blocking
 
