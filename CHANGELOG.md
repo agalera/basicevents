@@ -1,4 +1,8 @@
 # CHANGELOG
+## 1.2.3 (2015-10-14)
+- Remove 3.2 support
+- Prepare travis
+
 ## 1.2.2 (2015-10-14)
 - Fix readme
 
