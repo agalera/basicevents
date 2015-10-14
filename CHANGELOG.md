@@ -1,4 +1,11 @@
 # CHANGELOG
+## 1.2.2 (2015-10-14)
+- Fix readme
+
+## 1.2.1 (2015-10-14)
+- Remove bad examples
+- Update readme
+
 ## 1.2.0 (2015-09-22)
 - You can change the method that executes when an exception occurs
 - Remove deprecated functions
