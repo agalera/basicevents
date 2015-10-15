@@ -64,7 +64,7 @@ def __run_queue():
             # check main thread is alive
             if not MainThread.is_alive():
                 send("STOP")
-            continue
+            continue  # pragma: no cover
 
         events._run_event(*args, **kwargs)
         if args[0] == "STOP":
