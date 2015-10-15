@@ -22,8 +22,8 @@ Link pypi: https://pypi.python.org/pypi/basicevents
 
 ```python
 # recommeded check all examples
-from basicevents.events import (subscribe, send_thread, send_queue,
-                                send_blocking, add_subcribe, send)
+from basicevents import (subscribe, send_thread, send_queue,
+                         send_blocking, add_subscribe, send)
 
 @subscribe("pepito")
 def example(*args, **kwargs):
