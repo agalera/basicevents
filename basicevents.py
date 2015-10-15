@@ -1,7 +1,10 @@
 from __future__ import print_function
 import threading
 import traceback
-import Queue
+try:
+    import Queue
+except ImportError:  #pragma: no cover
+    import queue as Queue
 
 
 class events(object):
