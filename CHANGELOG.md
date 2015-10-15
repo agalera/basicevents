@@ -1,4 +1,7 @@
 # CHANGELOG
+## 1.2.4 (2015-10-15)
+- Fix support python 3
+
 ## 1.2.3 (2015-10-14)
 - Remove 3.2 support
 - Prepare travis
