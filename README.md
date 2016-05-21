@@ -4,7 +4,7 @@
 [![Code Climate](https://img.shields.io/codeclimate/github/kianxineki/basicevents.svg)](https://codeclimate.com/github/kianxineki/basicevents)
 [![Codecov](https://img.shields.io/codecov/c/github/kianxineki/basicevents.svg)](https://codecov.io/github/kianxineki/basicevents)
 [![Travis](https://img.shields.io/travis/kianxineki/basicevents.svg)](https://travis-ci.org/kianxineki/basicevents)
-
+[![PypiDownloads](https://img.shields.io/pypi/l/basicevents.svg)]
 
 # BasicEvents
 python basic events send non-blocking
