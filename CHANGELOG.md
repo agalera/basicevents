@@ -1,4 +1,7 @@
 # CHANGELOG
+## 1.2.5 (2016-06-15)
+- Fix MANIFEST.in
+
 ## 1.2.4 (2015-10-15)
 - Fix support python 3
 
