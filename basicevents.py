@@ -1,6 +1,15 @@
 from __future__ import print_function
 import threading
 import traceback
+import sys
+coroutines = False
+if sys.version_info >= (3, 4):
+    coroutines = True
+    import asyncio
+    from concurrent.futures import ThreadPoolExecutor
+    executor = ThreadPoolExecutor(1)
+    loop = asyncio.get_event_loop()
+
 try:
     import Queue
 except ImportError:  #pragma: no cover
@@ -10,7 +19,7 @@ except ImportError:  #pragma: no cover
 class events(object):
     subs = {}
     queue = Queue.Queue()
-    timeout = 30
+    timeout = 10
     logger = print
 
     @staticmethod
@@ -73,7 +82,10 @@ def __run_queue():
         if args[0] == "STOP":
             proccess_queue = False
 
-threading.Thread(target=__run_queue).start()
+if coroutines:
+    loop.run_in_executor(executor, __run_queue)
+else:
+    threading.Thread(target=__run_queue).start()
 
 # avoids having to import events
 add_subscribe = events.add_subscribe
