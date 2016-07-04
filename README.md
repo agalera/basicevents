@@ -27,10 +27,10 @@ from basicevents import (subscribe, send_thread, send_queue,
 
 @subscribe("pepito")
 def example(*args, **kwargs):
-    print "recv signal, values:", args, kwargs
+    print("recv signal, values:", args, kwargs)
 
 def example2(*args, **kwargs):
-    print "manual subscribe"
+    print("manual subscribe")
 
 # manual subscribe
 add_subscribe("pepito", example2)
