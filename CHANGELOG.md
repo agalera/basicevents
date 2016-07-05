@@ -1,4 +1,7 @@
 # CHANGELOG
+## 2.0.0 (2016-07-05)
+- Require call run() for init events loop
+
 ## 1.2.5 (2016-06-15)
 - Fix MANIFEST.in
 

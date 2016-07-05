@@ -10,7 +10,7 @@ except ImportError:  #pragma: no cover
 class events(object):
     subs = {}
     queue = Queue.Queue()
-    timeout = 30
+    timeout = 5
     logger = print
 
     @staticmethod
@@ -73,7 +73,9 @@ def __run_queue():
         if args[0] == "STOP":
             proccess_queue = False
 
-threading.Thread(target=__run_queue).start()
+
+def run():
+    threading.Thread(target=__run_queue).start()
 
 # avoids having to import events
 add_subscribe = events.add_subscribe
