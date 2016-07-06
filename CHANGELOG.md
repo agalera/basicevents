@@ -1,4 +1,7 @@
 # CHANGELOG
+## 2.0.1 (2016-07-06)
+- Fix tests
+
 ## 2.0.0 (2016-07-05)
 - Require call run() for init events loop
 
