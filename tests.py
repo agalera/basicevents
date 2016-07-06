@@ -1,6 +1,6 @@
 from basicevents import (subscribe, send_thread, send_queue,
                          send_blocking, add_subscribe, send,
-                         __run_queue)
+                         __run_queue, run)
 # import unittest
 import time
 import threading
@@ -78,6 +78,7 @@ class TestMethods(unittest.TestCase):
 
 if __name__ == '__main__':
     add_subscribe("pepito", example2)
+    run()
     timeout_exception()
     # kill brains
     exception_dead_mainthread()
