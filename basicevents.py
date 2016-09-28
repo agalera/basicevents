@@ -1,7 +1,7 @@
 from __future__ import print_function
 import threading
 import traceback
-from multiprocessing import Queue
+from multiprocessing import Queue, Process
 
 
 class events(object):
@@ -72,7 +72,7 @@ def __run_queue():
 
 
 def run():
-    threading.Thread(target=__run_queue).start()
+    Process(target=__run_queue).start()
 
 # avoids having to import events
 add_subscribe = events.add_subscribe
