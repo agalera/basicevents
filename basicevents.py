@@ -1,15 +1,12 @@
 from __future__ import print_function
 import threading
 import traceback
-try:
-    import Queue
-except ImportError:  #pragma: no cover
-    import queue as Queue
+from multiprocessing import Queue
 
 
 class events(object):
     subs = {}
-    queue = Queue.Queue()
+    queue = Queue()
     timeout = 5
     logger = print
 

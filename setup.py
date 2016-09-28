@@ -28,9 +28,9 @@ changelog = read_md('CHANGELOG.md')
 
 setup(
     name='basicevents',
-    version='2.0.1',
+    version='2.0.2',
     description='python events non-blocking',
-    long_description=readme+'\n\n'+changelog,
+    long_description=readme + '\n\n' + changelog,
     author='Alberto Galera Jimenez',
     author_email='galerajimenez@gmail.com',
     url='https://github.com/kianxineki/basicevents',
