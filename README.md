@@ -130,13 +130,3 @@ events.send = events.send_blocking # or other functions
 ```python
 add_subscribe, send, send_queue, send_thread, send_blocking
 ```
-
-
-## NOTE:
-If you use gunicorn you should do this.
-
-```python
-def post_worker_init(worker):
-    print("post worker")
-    threading.Thread(target=__run_queue).start()
-```
