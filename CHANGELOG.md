@@ -1,5 +1,8 @@
 # CHANGELOG
-## 2.0.4(2016-10-19)
+## 2.0.5(2016-10-20)
+- events to Events
+
+## 2.0.4(2016-10-20)
 - Update document
 - Remove old code
 
