@@ -7,18 +7,22 @@ from multiprocessing import Queue, Process
 class events(object):
     subs = {}
     queue = Queue()
-    timeout = 5
     logger = print
 
     @staticmethod
     def _run_event(event, *args, **kwargs):
         try:
             for func in events.subs[event]:
+                print("iter subs", func)
                 try:
+                    print("init func")
                     func(*args, **kwargs)
+                    print("end func")
                 except:
+                    print("esto peta")
                     events.logger(traceback.format_exc())
         except:
+            print("peta mucho")
             pass
 
     @staticmethod
@@ -53,19 +57,8 @@ class events(object):
 
 def __run_queue():
     proccess_queue = True
-    for i in threading.enumerate():
-        if i.name == "MainThread":
-            MainThread = i
-            break
     while proccess_queue:
-        try:
-            args, kwargs = events.queue.get(timeout=events.timeout)
-        except:
-            # check main thread is alive
-            if not MainThread.is_alive():
-                send("STOP")
-            continue  # pragma: no cover
-
+        args, kwargs = events.queue.get()
         events._run_event(*args, **kwargs)
         if args[0] == "STOP":
             proccess_queue = False

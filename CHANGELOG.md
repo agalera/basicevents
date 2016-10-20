@@ -1,4 +1,8 @@
 # CHANGELOG
+## 2.0.4(2016-10-19)
+- Update document
+- Remove old code
+
 ## 2.0.3(2016-10-19)
 - PEP8
 

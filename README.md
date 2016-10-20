@@ -22,7 +22,7 @@ Link pypi: https://pypi.python.org/pypi/basicevents
 ```python
 # recommeded check all examples
 from basicevents import (subscribe, send_thread, send_queue,
-                         send_blocking, add_subscribe, send)
+                         send_blocking, add_subscribe, send, run)
 
 @subscribe("pepito")
 def example(*args, **kwargs):
@@ -45,6 +45,9 @@ send_thread("pepito", 1, 2, 3, example="new thread")
 
 # This is blocking
 send_blocking("pepito", 1, 2, 3, example="blocking")
+
+run()
+send("STOP")
 ```
 
 ## Documentation
@@ -72,7 +75,7 @@ send_blocking(name_event, *args, **kwargs)
 
 
 
-* Note: Currently running as thread to allow sharing of memory, if you want an event to use more CPU (cores), you can run processes within the event.
+* Note: Currently running in individual process.
 
 ### Attributes events
 
@@ -94,12 +97,6 @@ queue is processed automatically and do not need to access this attribute, but i
 
 return int
 
-It is the timeout of the get request queue.
-When it reaches the timeout check the MainThread is alive, if so wait to get back, if not, it sends a signal to the EventThread.
-You can modify it if you wish.
-```python
-from basicevents import events
-events.timeout = 1
 ```
 
 - events.logger
