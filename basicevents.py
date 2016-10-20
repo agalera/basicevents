@@ -2,6 +2,7 @@ from __future__ import print_function
 import threading
 import traceback
 from multiprocessing import Queue, Process
+import signal
 
 
 class Events(object):
@@ -13,16 +14,11 @@ class Events(object):
     def _run_event(event, *args, **kwargs):
         try:
             for func in Events.subs[event]:
-                print("iter subs", func)
                 try:
-                    print("init func")
                     func(*args, **kwargs)
-                    print("end func")
                 except:
-                    print("esto peta")
                     Events.logger(traceback.format_exc())
         except:
-            print("peta mucho")
             pass
 
     @staticmethod
@@ -57,11 +53,20 @@ class Events(object):
 
 def __run_queue():
     proccess_queue = True
+
+    def signal_handler(signal, frame):
+            print('basicevent stopping')
+            send("STOP")
+
+    signal.signal(signal.SIGINT, signal_handler)
     while proccess_queue:
         args, kwargs = Events.queue.get()
-        Events._run_event(*args, **kwargs)
+
         if args[0] == "STOP":
             proccess_queue = False
+            Events.logger("basicevent stopped")
+        else:
+            Events._run_event(*args, **kwargs)
 
 
 def run():

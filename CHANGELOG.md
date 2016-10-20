@@ -1,4 +1,8 @@
 # CHANGELOG
+## 2.0.6(2016-10-20)
+- events to Events
+- correct shutdown
+
 ## 2.0.5(2016-10-20)
 - events to Events
 
