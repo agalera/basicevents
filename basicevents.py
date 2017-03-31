@@ -52,7 +52,7 @@ class Events(object):
     send = send_queue
 
 
-def __run_queue(stop_function):
+def __run_queue(stop_function=lambda: True):
     proccess_queue = True
 
     def signal_handler(signal, frame):

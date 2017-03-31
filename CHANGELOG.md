@@ -1,4 +1,7 @@
 # CHANGELOG
+## 2.0.8(2017-01-31)
+- Fix default argument
+
 ## 2.0.7(2017-01-31)
 - Support waiting for stop loop
 
