@@ -1,6 +1,7 @@
 from __future__ import print_function
 import threading
 import traceback
+from time import sleep
 from multiprocessing import Queue, Process
 import signal
 
@@ -51,12 +52,17 @@ class Events(object):
     send = send_queue
 
 
-def __run_queue():
+def __run_queue(stop_function):
     proccess_queue = True
 
     def signal_handler(signal, frame):
             print('basicevent stopping')
-            send("STOP")
+            while True:
+                if stop_function():
+                    send("STOP")
+                    break
+                else:
+                    sleep(2)
 
     signal.signal(signal.SIGINT, signal_handler)
     while proccess_queue:
@@ -69,8 +75,8 @@ def __run_queue():
             Events._run_event(*args, **kwargs)
 
 
-def run():
-    Process(target=__run_queue).start()
+def run(stop_function=lambda: True):
+    Process(target=__run_queue, args=(stop_function,)).start()
 
 
 # deprecated
