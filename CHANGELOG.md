@@ -1,8 +1,11 @@
 # CHANGELOG
-## 2.0.8(2017-01-31)
+## 2.0.9(2017-04-03)
+- Fix pip version
+
+## 2.0.8(2017-03-31)
 - Fix default argument
 
-## 2.0.7(2017-01-31)
+## 2.0.7(2017-03-31)
 - Support waiting for stop loop
 
 ## 2.0.6(2016-10-20)
