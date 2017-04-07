@@ -56,15 +56,19 @@ def __run_queue(stop_function=lambda: True):
     proccess_queue = True
 
     def signal_handler(signal, frame):
-            print('basicevent stopping')
+        def waiting_dead(stop_function):
             while True:
                 if stop_function():
+                    print("send stop")
                     send("STOP")
                     break
                 else:
                     sleep(2)
+        print('basicevent stopping')
+        Process(target=waiting_dead, args=(stop_function,)).start()
 
     signal.signal(signal.SIGINT, signal_handler)
+    # os.setpgrp()  # kill non propagate
     while proccess_queue:
         args, kwargs = Events.queue.get()
 

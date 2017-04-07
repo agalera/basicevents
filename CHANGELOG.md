@@ -1,4 +1,7 @@
 # CHANGELOG
+## 2.0.10(2017-04-07)
+- graceful stop
+
 ## 2.0.9(2017-04-03)
 - Fix pip version
 
