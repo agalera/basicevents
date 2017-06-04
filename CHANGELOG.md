@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.0.12(2017-06-05)
+- revert task_done() (not exists in multiprocessing)
+
 ## 2.0.11(2017-06-05)
 - task_done()
 
