@@ -1,4 +1,8 @@
 # CHANGELOG
+
+## 2.0.11(2017-06-05)
+- task_done()
+
 ## 2.0.10(2017-04-07)
 - graceful stop
 

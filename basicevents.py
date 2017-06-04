@@ -77,6 +77,7 @@ def __run_queue(stop_function=lambda: True):
             Events.logger("basicevent stopped")
         else:
             Events._run_event(*args, **kwargs)
+        Events.queue.task_done()
 
 
 def run(stop_function=lambda: True):
