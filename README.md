@@ -1,8 +1,8 @@
 
 [![pythonversions](https://img.shields.io/pypi/pyversions/basicevents.svg)](https://pypi.python.org/pypi/basicevents)
-[![Code Climate](https://img.shields.io/codeclimate/github/kianxineki/basicevents.svg)](https://codeclimate.com/github/kianxineki/basicevents)
-[![Codecov](https://img.shields.io/codecov/c/github/kianxineki/basicevents.svg)](https://codecov.io/github/kianxineki/basicevents)
-[![Travis](https://img.shields.io/travis/kianxineki/basicevents.svg)](https://travis-ci.org/kianxineki/basicevents)
+[![Code Climate](https://img.shields.io/codeclimate/github/agalera/basicevents.svg)](https://codeclimate.com/github/agalera/basicevents)
+[![Codecov](https://img.shields.io/codecov/c/github/agalera/basicevents.svg)](https://codecov.io/github/agalera/basicevents)
+[![Travis](https://img.shields.io/travis/agalera/basicevents.svg)](https://travis-ci.org/agalera/basicevents)
 [![License](https://img.shields.io/pypi/l/basicevents.svg)](http://www.gnu.org/licenses/gpl-3.0.txt)
 
 # BasicEvents

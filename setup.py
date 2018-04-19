@@ -33,7 +33,7 @@ setup(
     long_description=readme + '\n\n' + changelog,
     author='Alberto Galera Jimenez',
     author_email='galerajimenez@gmail.com',
-    url='https://github.com/kianxineki/basicevents',
+    url='https://github.com/agalera/basicevents',
     py_modules=['basicevents'],
     include_package_data=True,
     install_requires=[
