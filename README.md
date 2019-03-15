@@ -97,8 +97,6 @@ queue is processed automatically and do not need to access this attribute, but i
 
 return int
 
-```
-
 - events.logger
 
 return function
