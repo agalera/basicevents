@@ -80,7 +80,8 @@ def __run_queue(stop_function=lambda: True):
 
 
 def run(stop_function=lambda: True):
-    Process(target=__run_queue, args=(stop_function,)).start()
+    for x in range(multiprocessing.cpu_count()):
+        Process(target=__run_queue, args=(stop_function,)).start()
 
 
 # deprecated
