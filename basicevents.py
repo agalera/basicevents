@@ -2,7 +2,7 @@ from __future__ import print_function
 import threading
 import traceback
 from time import sleep
-from multiprocessing import Queue, Process
+from multiprocessing import Queue, Process, cpu_count
 import signal
 
 
@@ -60,7 +60,7 @@ def __run_queue(stop_function=lambda: True):
             while True:
                 if stop_function():
                     print("send stop")
-                    for x in range(multiprocessing.cpu_count()):
+                    for x in range(cpu_count()):
                         send("STOP")
                     break
                 else:
@@ -81,7 +81,7 @@ def __run_queue(stop_function=lambda: True):
 
 
 def run(stop_function=lambda: True):
-    for x in range(multiprocessing.cpu_count()):
+    for x in range(cpu_count()):
         Process(target=__run_queue, args=(stop_function,)).start()
 
 
