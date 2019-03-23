@@ -4,6 +4,7 @@ from basicevents import (subscribe, send_thread, send_queue,
 # import unittest
 import time
 import threading
+import multiprocessing
 import unittest
 
 
@@ -19,11 +20,13 @@ def best_error(*args, **kwargs):
 
 def stop_new_thread(*args, **kwargs):
     time.sleep(70)
-    send("STOP")
+    for x in range(multiprocessing.cpu_count()):
+        send("STOP")
 
 
 def timeout_exception():
-    send("STOP")
+    for x in range(multiprocessing.cpu_count()):
+        send("STOP")
     time.sleep(10)
     threading.Thread(target=stop_new_thread).start()
     __run_queue()
@@ -41,7 +44,8 @@ def exception_dead_mainthread():
         if i.name == "MainThread":
             MainThread = i
             break
-    send("STOP")
+    for x in range(multiprocessing.cpu_count()):
+        send("STOP")
     time.sleep(5)
     threading.Thread(target=modify_isAlive).start()
     __run_queue()
