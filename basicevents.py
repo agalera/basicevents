@@ -60,7 +60,8 @@ def __run_queue(stop_function=lambda: True):
             while True:
                 if stop_function():
                     print("send stop")
-                    send("STOP")
+                    for x in range(multiprocessing.cpu_count()):
+                        send("STOP")
                     break
                 else:
                     sleep(2)
